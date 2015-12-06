@@ -2,6 +2,7 @@ body{
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
+	/*text-baseline:middles;*/
 }
 #parent{
 	/*display: none;*/
@@ -27,14 +28,22 @@ body{
 	width: 35%;
 }
 .parallelogram .desc{
-	position: absolute;
-	width:100%;left:0;top:50%;
+	position: absolute;left:0;top:50%;
+	width:100%;height: 48%;
 	text-align: center;
 	padding: 15px;
 
 	-webkit-transform: skew(-20deg);
 	   -moz-transform: skew(-20deg);
 	     -o-transform: skew(-20deg);
+}
+.parallelogram .desc p{
+	/*position: absolute;left:0;top:50%;*/
+	width:100%;height: 28%;
+	display: block;
+	white-space: normal;
+	overflow: hidden;
+	text-overflow:ellipsis;
 }
 .parallelogram img{
 	position: absolute;
@@ -45,7 +54,7 @@ body{
 	-transform: scale(1) skew(-20deg);
 }
 .parallelogram.open{
-	z-index: 9;
+	/*z-index: 9;*/
 }
 .extry{
 	position: relative;
@@ -65,7 +74,7 @@ body{
 .extras{
 	/*display: none;*/
 	position: absolute;top:-4%;
-	z-index:9999;
+	z-index:99;
 	background-color: #fff;
 	height: 115%;
 	width:calc(50% + 215px);
@@ -76,8 +85,8 @@ body{
   	-webkit-animation-fill-mode: both;
   	animation-fill-mode: both;
 
-  	-webkit-animation-duration: 1.5s;
-  	animation-duration: 1.5s;
+  	-webkit-animation-duration: 1s;
+  	animation-duration: 1s;
 }
 @-webkit-keyframes showProducts{
   to{
@@ -104,7 +113,7 @@ body{
     text-align: center;
     position: absolute;
     margin: 0px;
-    display: none;
+    /*display: none;*/
 
     -webkit-transform: rotate(20deg);
 	   -moz-transform: rotate(20deg);
@@ -122,18 +131,133 @@ body{
 .extras.top-right p{top: 10%;right: 160px;}
 
 #details{
-	display:none;
-	z-index:9;position: absolute;height:100%;
+	z-index: 0;
+	opacity: 0;
+	background-color: #fefefe;
+	position: absolute;height:100%;
 	width:100%;
 
 	-webkit-transform: skew(20deg);
 	   -moz-transform: skew(20deg);
 	     -o-transform: skew(20deg);
 }
+#details .card{
+	box-shadow: none;
+	background-color: rgba(255,255,255, 0);
+}
 #back-button{
-	position: absolute;top:50px;left:150px;display: none;
+	position: absolute;top:50px;left:100px;
+	/*display: none;*/
 
 	-webkit-transform: skew(-20deg);
 	   -moz-transform: skew(-20deg);
 	     -o-transform: skew(-20deg);
+}
+#back-button{
+	position: absolute;top:50px;left:100px;
+	/*display: none;*/
+	/*color: #000 !important;*/
+	/*text-shadow: 0 1px 3px #000;*/
+	color:#616161;
+
+	-webkit-transform: skew(-20deg);
+	   -moz-transform: skew(-20deg);
+	     -o-transform: skew(-20deg);
+}
+#share-button{
+	opacity: 0;
+	-webkit-transform: scale(0);
+	   -moz-transform: scale(0);
+	     -o-transform: scale(0);
+}
+.prod-title{
+	position: absolute;top:50px;left:400px;
+	text-shadow: 0 0 5px #000;
+	font-size: 50px;
+}
+.jura{
+	/*margin-top: 120px;*/
+	padding: 0;
+	padding-left: 140px;
+	padding-right: 140px;
+	-webkit-transform: skew(-20deg);
+	   -moz-transform: skew(-20deg);
+	     -o-transform: skew(-20deg);
+}
+.jura .row{
+	margin-left: -140px;
+	margin-right: -140px;
+	height: 300px;
+
+	/*background: url(../img/bg.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;*/
+}
+.jura .col{
+	/*margin:0;*/
+	/*padding: 0;*/
+}
+.card-content.imagery{
+	float:left;opacity:0;margin-top:-490px;
+	background-color:rgba(255,255,255,.5);
+	position: relative;top:0;left:0;
+	height:550px;width:100%;
+	overflow: hidden;
+}
+.card-content.imagery .row{
+	margin:0;padding:0;position: relative;
+}
+.card-content.imagery .col{
+	margin:1%;
+	width:31%;height:150px;
+	background-size: cover;
+	background-position: center;
+	cursor: pointer;
+}
+.card-content.imagery .col img{
+	height: 120px;width:100%;
+}
+.image-viewer{
+	position: absolute;top:0;left:0;
+	width:100%;height:100%;
+	cursor:crosshair;
+	/*display: none;*/
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+}
+.image-viewer img{
+	position: absolute;top:0;left:0;
+	width: 100%;height: 100%;
+
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+}
+
+.image-viewer img.prev{
+	opacity: 0.5;
+	-webkit-transform: scale(0.5) translate3d(-125%, 0, 0);;
+	-ms-transform: scale(0.5) translate3d(-125%, 0, 0);;
+	-o-transform: scale(0.5) translate3d(-125%, 0, 0);;
+	transform: scale(0.5) translate3d(-125%, 0, 0);;
+}
+
+.image-viewer img.current{
+	z-index: 9;
+	-webkit-transform: scale(0.7);
+	-ms-transform: scale(0.7);
+	-o-transform: scale(0.7);
+	transform: scale(0.7);
+}
+
+.image-viewer img.next{
+	opacity: 0.5;
+	-webkit-transform: scale(0.4) translate3d(145%, 0, 0);;
+	-ms-transform: scale(0.4) translate3d(145%, 0, 0);;
+	-o-transform: scale(0.4) translate3d(145%, 0, 0);;
+	transform: scale(0.4) translate3d(145%, 0, 0);;
 }
