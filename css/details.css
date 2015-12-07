@@ -1,84 +1,7 @@
-body{
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
-	/*text-baseline:middles;*/
-}
-#parent{
-	/*display: none;*/
-	z-index: 1;
-	position: absolute;top: 0;left: 0;
-	width: 100%;height: 100%;
-}
-.parallelogram{
-	position: relative;
-	/*display: table;*/
-	float: left;
-	width: 30%;
-	height: 100%;
-	overflow: hidden;
-
-	-webkit-transform: skew(20deg);
-	   -moz-transform: skew(20deg);
-	     -o-transform: skew(20deg);
-
-	/*-webkit-transform: matrix(1, 0, 0.34201, 1, 0, 0);
-		transform: matrix(1, 0, 0.34201, 1, 0, 0);*/
-}
-.parallelogram:first-child, .parallelogram:last-child{	
-	width: 35%;
-}
-.parallelogram .desc{
-	position: absolute;left:0;top:50%;
-	width:100%;height: 48%;
-	text-align: center;
-	padding: 15px;
-
-	-webkit-transform: skew(-20deg);
-	   -moz-transform: skew(-20deg);
-	     -o-transform: skew(-20deg);
-}
-.parallelogram .desc p{
-	/*position: absolute;left:0;top:50%;*/
-	width:100%;height: 28%;
-	display: block;
-	white-space: normal;
-	overflow: hidden;
-	text-overflow:ellipsis;
-}
-.parallelogram img{
-	position: absolute;
-	width:135%;height:50%;left:-15%;
-	background: transparent;
-	-webkit-transform: scale(1) skew(-20deg);
-	-moz-transform: scale(1) skew(-20deg);
-	-transform: scale(1) skew(-20deg);
-}
-.parallelogram.open{
-	/*z-index: 9;*/
-}
-.extry{
-	position: relative;
-	display: table;
-	float: left;
-	width: 5%;
-	height: 100%;
-	overflow: hidden;
-}
-.parallelogram:not(.extry):hove{
-	z-index: 999;
-
-	-webkit-transform: scale(1.4) skew(20deg);
-	   -moz-transform: scale(1.4) skew(20deg);
-	     -o-transform: scale(1.4) skew(20deg);
-}
-
-
-/*DETAILS*/
 .extras{
-	background: red;
+	/*background: red;*/
 	position: absolute;top:0%;left: 0px;
-	z-index:3;
+	z-index:2;
 }
 .extras.bottom-left{
 	left: 0px;
@@ -121,8 +44,8 @@ body{
 
 
 #details{
-	opacity: 0;
-	z-index: 0;
+	opacity: 1;
+	/*z-index: 1;*/
 	overflow: hidden;
 	background-color: #fefefe;
 	position: absolute;left:0;height:100%;
