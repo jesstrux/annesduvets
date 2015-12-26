@@ -1,125 +1,154 @@
-$(document).ready(function(){
-	$('.tooltipped').tooltip({delay: 50});
-	
-	TweenMax.staggerFrom(".parallelogram", 1, {y:-100, delay: 0.5}, 0.4);
-	// TweenMax.to("#share-button", 1, {scale:1, opacity:1, delay: 1});
-	// TweenMax.from("#home-link", 1, {scale:0, opacity:0, delay: 1});
+angular.module('annes', ['ngAnimate'])
+  .constant('TweenMax', TweenMax)
+  .controller('MainCtrl', function ($scope, Products) {
+    $scope.products = Products.all();
+    $scope.currentProductIdx = 0;
+    $scope.currentProduct = $scope.products[$scope.currentProductIdx];
+    $scope.currentState = 'productDetail';
+    $scope.fullImageView = false;
+    $scope.currentImage = '';
+    $scope.nextImage = '';
+    $scope.prevImage = '';
 
-	// showProducts();
+    $scope.actionButtonClick = function(){
+      if($scope.currentState === 'productDetail')
+        $scope.currentState = 'productImages';
+      else if($scope.currentState === 'productImages')
+        $scope.currentState = 'productDetail';
+      else if($scope.currentState === 'previewingImages'){
+        $scope.currentState = 'productImages';
+        $scope.fullImageView = false;
+      }
+    }
 
-	var previewing = false;
-	var color;
+    $scope.prevButtonClick = function(){
+      if($scope.currentState === 'previewingImages'){
+        setImages($scope.prevImage);
+      }
+      else{
+        // $scope.currentState = 'productDetail';
+        var idx = $scope.currentProductIdx;
+        $scope.currentProductIdx = ( idx === 0 ) ? $scope.products.length - 1 : idx - 1; 
+        $scope.currentProduct = $scope.products[$scope.currentProductIdx];
+      }
+    }
 
-	$('.parallelogram .btn').click(function(){
-		previewing = true;
+    $scope.nextButtonClick = function(){
+      if($scope.currentState === 'previewingImages'){
+        setImages($scope.nextImage);
+      }
+      else{
+        // $scope.currentState = 'productDetail';
+        var idx = $scope.currentProductIdx;
+        $scope.currentProductIdx = ( idx === $scope.products.length - 1 ) ? 0 : idx + 1; 
+        $scope.currentProduct = $scope.products[$scope.currentProductIdx];
+      }
+    }
 
-		$('#details').css({'z-index':2, opacity: 1, width: 100+'%'}).attr('class', '');
+    $scope.preview = function(idx){
+      setImages(idx);
+      $scope.currentState = 'previewingImages';
+    }
 
-		var classList = $(this).parents('.parallelogram').attr('class').split(/\s+/);
-		
-		$.each(classList, function(index, item) {
-		    if (item === 'parallelogram') {
-		        //do nothing
-		    }else{
-		    	$('#details').addClass(item);
-		    }
-		});
-		
-		$('#details').classList = '';
-		$('#details .jura').addClass(color);
-		$('#top-banner').addClass(color);
-		$('#top-banner .section-head').addClass(color+'-text');
-		
-		// SETTING UP FOR #THECOOLMDEFFECT
-		$(this).parents('.parallelogram').addClass('open').find('.desc').addClass('this-desc');
-		var el = $(this).parents('.parallelogram');
-		var left = el.position().left, w = el.css('width');
+    $scope.galleryImageClick = function(img){
+      if(img.current)
+        $scope.fullImageView = !$scope.fullImageView;
+      else if(img.next)
+        setImages($scope.nextImage);
+      else if(img.prev)
+        setImages($scope.prevImage);
+    }
 
-		var header = $(this).parents('.parallelogram').find('.section-head').text();
-		var para = $(this).parents('.parallelogram').find('p').text();
+    function setImages(idx){
+      resetImages();
 
-		$(".jura h4").text(header);
-		$(".jura p").text(para);
+      var current, prev, next, len;
+      len = $scope.currentProduct.images.length;
+      current = $scope.currentImage = idx;
+      prev = (idx - 1 < 0) ? len - 1 : idx - 1;
+      next = (idx + 1 > (len - 1)) ? 0 : idx + 1;
+      
+      $scope.nextImage = next;
+      $scope.prevImage = prev;
 
-		// #THECOOLMDEFFECT
-		TweenMax.from("#details", 1, {x:left, width:w, ease: Expo.easeOut});
-		// TweenMax.staggerFrom(".jura img", 0.5, {opacity:0, scale: 0.9, delay : 0.4}, 0.4);
-		TweenMax.from(".card", .6, {opacity:0, y:100, delay: .5});
-		TweenMax.from("#details .section-head", 1, {opacity: 0, x:150});
-		// TweenMax.from("p.flow-text", .7, {opacity: 0, y:50, delay: .5});
-		TweenMax.from(".jura h4", 1, {opacity: 0 ,x:-50, delay: 0.6}, 0.4);
-		// TweenMax.from(".jura p", 1, {opacity: 0 , x:100, delay : 0.4}, 0.4);
-		TweenMax.staggerFrom(".jura .card-content", 1, {scale: 0.9, rotate: 30, delay: 1}, 0.4);
-		$('#back-button').show();
-	});
+      $scope.currentProduct.images[current].current = true;
+      $scope.currentProduct.images[prev].prev = true;
+      $scope.currentProduct.images[next].next = true;
+    }
 
-	$('#back-button').click(function(){
-		// $('#details').hide();
-		backToAllItems();
-	});
-
-	function backToAllItems(){
-		var el = $('.parallelogram.open');
-		var left = parseInt(el.position().left + 118), w = el.css('width');
-		
-		// RESTORING TO DEFAULT
-		$('#back-button').hide();
-		TweenMax.to("#details", 1.5, {x:left, width:w, ease: Expo.easeOut});
-		TweenMax.to(".this-desc", .1, {opacity:1});
-		TweenMax.staggerFrom(".this-desc .section-head, .this-desc p", .5, {y:50}, 0.1);
-		TweenMax.from(".this-desc .btn", .5, {scale:1.1, opacity: 0});
-
-		// CLEANING UP AFTER MYSELF
-		TweenMax.to("#details", .001, {x:0, width:100+'%', 'z-index':0, opacity: 0, delay: .1, ease: Expo.easeOut});
-		$('.parallelogram.open').removeClass('open');
-		$('.this-desc').removeClass('this-desc');
-
-		$('#details .jura').removeClass(color);
-		$('#top-banner').removeClass(color);
-		$('#top-banner .section-head').removeClass(color+'-text');
-
-		previewing = false;
-	}
-
-	// $(document).on('click', '#showImages', function(){
-	// 	$(this).prop('id', 'hideImages');
-	// 	$(this).find('i').removeClass('zmdi-image').addClass('zmdi-info');
-	// 	$('.la-card .card-content.textual').addClass('zoomOut');
-	// 	$('.la-card .card-content.imagery').removeClass('fadeOutRight').addClass('fadeInRight');
-
-	// 	TweenMax.staggerFrom(".card-content.imagery .col", 1, {scale: 0.9, rotate: 30, delay : .8}, 0.1);
-	// });
-
-	// $(document).on('click', '#hideImages', function(){
-	// 	$(this).prop('id', 'showImages');
-	// 	$(this).find('i').removeClass('zmdi-info').addClass('zmdi-image');
-	// 	$('.la-card .card-content.textual').removeClass('zoomOut').addClass('zoomIn');
-	// 	$('.la-card .card-content.imagery').addClass('fadeOutRight');
-	// });
-
-	// $(document).on('click', '.card-content.imagery .col', function(e){
-	// 	var startX = e.clientX - e.offsetX;
-	// 	var startY = e.clientY - e.offsetY;
-
-	// 	console.log(e.offsetX + ' ,' + e.offsetY);
-	// 	console.log(startX + ' , ' + startY);
-	// 	// var startX = e.clientX - $('.card-content .row').position().left;
-	// 	// var startY = e.clientY - $('.card-content .row').position().top;
-
-	// 	$('.imagery').find('.row').css({'opacity': 0});
-	// 	// $(".image-viewer").css({display: 'block'});
-	// 	TweenMax.to(".image-viewer", .5, {scale:1});
-	// });
-
-	// $(document).on('click', '.image-viewer', function(){
-	// 	$('.imagery').find('.row').animate({'opacity': 1});
-	// 	// TweenMax.to(".image-viewer", .5, {scale:1});
-	// 	TweenMax.to(".image-viewer", .5, {scale:0});
-	// 	// $(this).removeClass('to-scale').css({'z-index': 1});
-	// });
-});
-
-function showProducts(){
-	// $('body').addClass('showing-products');
-	// $('.extras p').slideDown(1000);
-}
+    function resetImages(){
+      var len = $scope.currentProduct.images.length;
+      for (var i = 0; i < len; i++) {
+        $scope.currentProduct.images[i].current = false;
+        $scope.currentProduct.images[i].prev = false;
+        $scope.currentProduct.images[i].next = false;
+      };
+    }
+  })
+  .factory('Products', ['$http', function($http){
+    var products = [
+      {
+        "name" : "Mataulo",
+        "desc" : "Mataulo hayo sasa consectetur adipisicing elit. Dicta aliquam alias, odit, ex odio quae fugiat, aperiam molestias accusamus ipsam, a? Illo qui rerum deserunt facilis, pariatur veritatis, dolorum quae.",
+        "images"  : [
+          {
+            "src" : "img/towel.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          },
+          {
+            "src" : "img/towel4.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          },
+          {
+            "src" : "img/towel3.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          },
+          {
+            "src" : "img/towel5.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          },
+          {
+            "src" : "img/towel6.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          },
+          {
+            "src" : "img/towel7.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          }
+        ]
+      },
+      {
+        "name" : "Mashuka",
+        "desc" : "Kwa upande wa mashuka, dicta aliquam alias, odit, ex odio quae fugiat, aperiam molestias accusamus ipsam, a? Illo qui rerum deserunt facilis, pariatur veritatis, dolorum quae.",
+        "images"  : [
+          {
+            "src" : "img/bed3.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          }
+        ]
+      },
+      {
+        "name" : "Foronya",
+        "desc" : "Ukiona fornya zetu, aperiam molestias accusamus ipsam, a? Illo qui rerum deserunt facilis, pariatur veritatis, dolorum quae.",
+        "images"  : [
+          {
+            "src" : "img/pillow2.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          },
+          {
+            "src" : "img/pillow.jpg",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          },
+          {
+            "src" : "img/pillow3.png",
+            "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+          }
+        ]
+      }
+    ];
+    return{
+      all : function(){
+        return products
+      }
+    };
+  }]);

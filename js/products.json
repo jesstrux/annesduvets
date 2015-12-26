@@ -1,0 +1,54 @@
+[
+		{
+		    "name" : "Mataulo",
+		    "desc" : "Mataulo hayo sasa consectetur adipisicing elit. Dicta aliquam alias, odit, ex odio quae fugiat, aperiam molestias accusamus ipsam, a? Illo qui rerum deserunt facilis, pariatur veritatis, dolorum quae.",
+		    "images"  : [
+		      {
+		        "src" : "img/towel.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      },
+		      {
+		        "src" : "img/towel4.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      },
+		      {
+		        "src" : "img/towel3.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      },
+		      {
+		        "src" : "img/towel5.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      },
+		      {
+		        "src" : "img/towel6.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      },
+		      {
+		        "src" : "img/towel7.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      },
+		      {
+		        "src" : "img/pillow.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      },
+		      {
+		        "src" : "img/pillow2.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      },
+		      {
+		        "src" : "img/bed3.jpg",
+		        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+		      }
+		    ]
+		},
+		{
+		    "name" : "Mashuka",
+		    "desc" : "Kwa upande wa mashuka, dicta aliquam alias, odit, ex odio quae fugiat, aperiam molestias accusamus ipsam, a? Illo qui rerum deserunt facilis, pariatur veritatis, dolorum quae.",
+		    "images"  : []
+		},
+		{
+		    "name" : "Foronya",
+		    "desc" : "Ukiona fornya zetu, aperiam molestias accusamus ipsam, a? Illo qui rerum deserunt facilis, pariatur veritatis, dolorum quae.",
+		    "images"  : []
+		}
+]

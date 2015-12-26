@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="annes">
+  <head>
+    <meta charset="UTF-8">
+    <title>Anne's Details page</title>
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+
+  <body>
+    <div id="details" ng-controller="DetailsCtrl">
+    <a id="back-button" href="javascript:void(0);" class="waves-effect waves-grey btn-flat back">
+      <i class="zmdi zmdi-arrow-back" style="font-size:50px;"></i>
+    </a>
+
+    <div class="jura lighten-3">
+      <div id="top-banner" class="row grey lighten-4">
+            
+      </div>
+      <div style="margin-top: -125px;">
+        <div class="row">
+          <div class="col l2 offset-l1 center" style="z-index:99;position: relative;">
+            <ul class="action-buttons" ng-class="{'rotated' : currentState == 'previewingImages'}">
+              <li><a id="nextImage" href="javascript:void(0);" class="grey darken- waves-effect waves-grey btn-larg btn-floating" ng-class="{'disabled' : currentState === 'productImages'}" ng-click="currentState === 'productImages' ? '' : prevButtonClick()"><i class="zmdi zmdi-chevron-up"></i></a>
+              </li>
+              <br>
+              <li>
+                <a id="actionButton" href="javascript:void(0);" class="grey darken- waves-effect waves-grey btn-large btn-floating" ng-click="actionButtonClick()"><i class="zmdi" ng-class="{'zmdi-image' : currentState === 'productDetail', 'zmdi-info' : currentState === 'productImages', 'zmdi-close' : currentState === 'previewingImages'}"></i></a>
+              </li>
+              <br>
+              <li><a id="prevImage" href="javascript:void(0);" class="grey darken- waves-effect waves-grey btn-larg btn-floating" ng-click="currentState === 'productImages' ? '' : nextButtonClick()" ng-class="{'disabled': currentState === 'productImages'}"><i class="zmdi zmdi-chevron-down"></i></a></li>
+            </ul>
+          </div>
+          <div class="col l7 la-card" style="position: relative;overflow:visible">
+            <div class="card-content textual animated" ng-show="currentState == 'productDetail'" ng-repeat="product in products">
+              <div class="product-image" style="background:url({{currentProduct.cover}})"></div>
+              <div class="product-details">
+                <h3 class="section-head text-darken-1" style="margin-bottom:-20px;">
+                  {{currentProduct.name}}
+                </h3>
+                <br>
+                <p class="flow-text">
+                  {{currentProduct.desc}}
+                </p>
+              </div>
+            </div>
+            <div class="card-content imagery animated" ng-show="currentState == 'productImages' || currentState == 'previewingImages'">
+              <div class="row" ng-repeat="image in gallery" ng-if="$index % 3 === 0" ng-class="{'margin-stuff' : $index > 0, 'fadeFlaniIvi' : currentState === 'previewingImages'}">
+                <div class="col" ng-if="$index < gallery.length" ng-click="preview($index)">
+                  <img ng-src="{{gallery[$index].src}}" class="responsive-image" alt="">
+                </div>
+                <div class="col" ng-if="$index + 1 < gallery.length" ng-click="preview($index + 1)">
+                  <img ng-src="{{gallery[$index + 1].src}}" class="responsive-image" alt="">
+                </div>
+                <div class="col" ng-if="$index + 2 < gallery.length" ng-click="preview($index + 2)">
+                  <img ng-src="{{gallery[$index + 2].src}}" class="responsive-image" alt="">
+                </div>
+              </div>
+              <div class="image-viewer lighten-5" ng-show="currentState == 'previewingImages'" ng-class="{'full' : fullImageView}">
+                <img ng-class="{'prev' : img.prev, 'current' : img.current, 'next' : img.next}" ng-repeat="img in gallery" ng-src="{{img.src}}" alt="{{img.desc}}" ng-click="galleryImageClick(img)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="extras top-right"></div>
+  <div class="extras bottom-left"></div>
+
+    <!-- JAVASCRIPTS -->
+    <script src="libs/jquery.min.js"></script>
+    <!-- // <script src="js/materialize.min.js"></script> -->
+    <script src="libs/TweenMax.min.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-animate.min.js"></script>
+    <script src="js/details.js"></script>
+  </body>
+</html>

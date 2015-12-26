@@ -1,48 +1,5 @@
 angular.module('annes', ['ngAnimate'])
   // .constant('TweenMax', TweenMax)
-  .controller('MainCtrl', function($scope){
-    $scope.showProducts = function(){
-      $('.home-page').addClass('closed');
-      TweenMax.to("#share-button, #home-link", 1.5, {opacity:1, delay: 1});
-      TweenMax.staggerFrom(".parallelogram", 1.2, {y:-80}, 0.4);
-    }
-    $scope.hideProducts = function(){
-      TweenMax.to("#share-button, #home-link", .001, {opacity:0});
-      $('.home-page').removeClass('closed');
-    }
-  })
-
-  .controller('ProductsCtrl', function($scope){
-    $('.parallelogram .btn').click(function(){
-      $('#details').css({'z-index':2, opacity: 1, width: 100+'%'}).attr('class', '');
-      var classList = $(this).parents('.parallelogram').attr('class').split(/\s+/);
-      $.each(classList, function(index, item) {
-          if (item === 'parallelogram') {
-              //do nothing
-          }else{
-            $('#details').addClass(item);
-          }
-      });
-      
-      $('#details').classList = '';
-
-      // SETTING UP FOR #THECOOLMDEFFECT
-      $(this).parents('.parallelogram').addClass('open').find('.desc').addClass('this-desc');
-      var el = $(this).parents('.parallelogram');
-      var left = el.position().left + 120, w = el.css('width');
-
-      // #THECOOLMDEFFECT
-      TweenMax.from("#details", 1, {x:left, width:w, ease: Expo.easeOut});
-      TweenMax.from("#top-banner", .8, {y:-100+'%',opacity:0});
-      TweenMax.from(".textual", .5, {scale:0.8, y:20, delay : 1});
-      TweenMax.from(".product-details .section-head", 1, {opacity: 0, x:40, delay : 1.2});
-      TweenMax.from(".product-details p", 1, {opacity: 0 , x:30, delay : 1.2});
-      TweenMax.from(".product-image", 2.5, {opacity:0, delay : 1});
-      TweenMax.staggerTo(".action-buttons, #back-button", .5, {opacity:1, delay:1});
-      $('#back-button').show();
-    });
-  })
-
   .controller('DetailsCtrl', function ($scope, Products, Gallery) {
     $scope.products = Products.all();
     $scope.gallery = Gallery.all();
@@ -54,18 +11,14 @@ angular.module('annes', ['ngAnimate'])
     $scope.nextImage = '';
     $scope.prevImage = '';
 
-    $scope.closeDetailPage = function(){
-      $scope.currentState = 'productDetail';
-      var el = $('.parallelogram.open');
-      var left = el.position().left + 120, w = el.css('width');
-
-      TweenMax.to("#details", .3, {x:left, width:w});
-      TweenMax.to("#details", 1.2, {opacity: 0, delay:0.35});
-      TweenMax.to(".jura, #back-button", .1, {opacity:0});
-      TweenMax.to("#details", .0001, {x:0, 'z-index':0, delay : 1.8});
-      
-      TweenMax.to(".jura, #back-button", .001, {opacity:1, delay:2});
-    }
+    setTimeout(function(){
+      TweenMax.from("#details", 2, {x:1180, width:400, ease: Expo.easeOut});
+      TweenMax.from(".textual", .5, {scale:0.8, y:20, delay : 1});
+      TweenMax.from(".product-details .section-head", 1, {opacity: 0, x:40, delay : 1.2});
+      TweenMax.from(".product-details p", 1, {opacity: 0 , x:30, delay : 1.2});
+      TweenMax.from(".product-image", 2.5, {opacity:0, delay : 1});
+      TweenMax.to(".action-buttons, #back-button", .5, {opacity:1, delay:1});
+    },20);
 
     $scope.actionButtonClick = function(){
       if($scope.currentState === 'productDetail')
@@ -207,6 +160,10 @@ angular.module('annes', ['ngAnimate'])
       },
       {
         "src" : "img/pillow.jpg",
+        "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
+      },
+      {
+        "src" : "img/pillow3.png",
         "caption" : "consectetur adipisicing elit. Dicta aliquam alias"
       }
     ];
