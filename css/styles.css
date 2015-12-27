@@ -8,7 +8,7 @@ body{
 	top: 0;left: 80px;
 	width: calc(100% - 160px);height: 100%;
 	z-index: 5;
-	box-shadow:0 5px 15px 5px rgba(0,0,0,.1);
+	box-shadow:0 1px 35px 5px rgba(0,0,0,.1);
 
 	-webkit-transform: skew(17.3deg);
 	   -moz-transform: skew(17.3deg);
@@ -90,7 +90,7 @@ body{
 
 /*DETAILS*/
 #share-button, #home-link{
-	opacity: 0;
+	/*opacity: 0;*/
 }
 .extras{
 	position: absolute;top:0%;left: 0px;
@@ -114,8 +114,8 @@ body{
 
 
 #details{
-	opacity: 0;
-	z-index: 0;
+	/*opacity: 0;*/
+	/*z-index: 0;*/
 	overflow: hidden;
 	background-color: #fefefe;
 	position: absolute;left:0;height:100%;
@@ -148,19 +148,16 @@ body{
 	font-size: 50px;
 }
 .jura{
-	/*position: relative;
-	z-index: 99;*/
 	padding: 0;
 	padding-left: 140px;
 	padding-right: 140px;
-	/*background: red;*/
 }
 .jura .row{
 	margin-left: -140px;
 	margin-right: -140px;
 	height: 300px;
 }
-.action-buttons, #back-button{
+.action-buttons a, #back-button{
 	opacity: 0;
 }
 .action-buttons{
@@ -196,6 +193,9 @@ body{
 	background: #fff;
 	overflow: hidden;
 }
+.card-content.textual.minimized{
+	display: none;
+}
 .card-content.textual .product-image, .card-content.textual .product-details{
 	position: absolute;
 	float: left;
@@ -217,7 +217,6 @@ body{
 }
 .card-content.imagery{
 	float:left;
-	/*opacity:0;*/
 	background-color:rgba(255,255,255,.5);
 	position: relative;left:0;
 	padding:10px; padding-left:15px;height:500px;width:100%;
@@ -244,11 +243,6 @@ body{
 .image-viewer{
 	position: absolute;top:0;left:0;
 	width:100%;height:100%;
-	
-	/*-webkit-transform: scale(0);
-	-ms-transform: scale(0);
-	-o-transform: scale(0);
-	transform: scale(0);*/
 }
 .image-viewer img{
 	position: absolute;top:0;left:0;
