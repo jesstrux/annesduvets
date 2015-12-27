@@ -50,7 +50,7 @@ angular.module('annes.controllers', [])
   $scope.gallery = Gallery.all();
   $scope.currentProductIdx = $stateParams.pid;
 
-  if(!$stateParams.pid)
+  if(!$stateParams.pid && !$stateParams.pid === 0)
     $state.go('productsMain');
 
   $scope.currentProduct = $scope.products[$scope.currentProductIdx];
