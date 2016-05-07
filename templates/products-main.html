@@ -1,7 +1,7 @@
 <div id="parent">
 	<div class="extry"></div>
 
-	<div class="parallelogram {{products[0].bg_class}}" ng-class="{'open': openProduct === 0}">
+	<div class="parallelogram {{products[0].bg_class}}">
 		<img ng-src="{{products[0].cover_trans}}">
 		<div class="desc">
 			<h3 class="section-head center">{{products[0].name}}</h3>
@@ -12,7 +12,7 @@
 		</div>
 	</div>
 
-	<div class="parallelogram {{products[1].bg_class}}"  ng-class="{'open': openProduct === 1}">
+	<div class="parallelogram {{products[1].bg_class}}">
 		<img ng-src="{{products[1].cover_trans}}">
 		<div class="desc grey-text text-darken-1">
 			<h3 class="section-head center">{{products[1].name}}</h3>
@@ -24,14 +24,14 @@
 		</div>
 	</div>
 
-	<div class="parallelogram {{products[2].bg_class}}"  ng-class="{'open': openProduct === 2}">
+	<div class="parallelogram {{products[2].bg_class}}">
 		<img ng-src="{{products[2].cover_trans}}">
 		<div class="desc">
 			<h3 class="section-head center">{{products[2].name}}</h3>
 			<p class="flow-text">
 				{{products[2].desc}}
 			</p>
-			<a ui-sref="productsDetailed({pid:2})" class="btn btn-raised brown lighten-2">Tazama</a>
+			<a ui-sref="productsDetailed({pid:2})" class="btn btn-raised light-green lighten-2">Tazama</a>
 		</div>
 	</div>
 

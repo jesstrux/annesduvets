@@ -1,9 +1,9 @@
 angular.module('annes', ['ngAnimate', 'ui.router', 'annes.controllers', 'annes.services'])
 
-.directive('action-menu', [function actionMenu(){
+.directive('actionMenu', [function(){
   var directive = {
     restrict: 'E',
-    template: '<div class="circle_menu"><i class="zmdi zmdi-plus menu_btn"></i></div><div class="menu"><i class="zmdi {{page.icon}} menu_itm" ng-repeat="page in vm.pages" ng-click="vm.open(page.tpl)"></i></div>',
+    templateUrl: 'templates/menu.html',
     link: link
   };
 

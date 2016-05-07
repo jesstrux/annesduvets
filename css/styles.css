@@ -7,9 +7,8 @@ body{
 	position: absolute;
 	top: 0;left: 80px;
 	width: calc(100% - 160px);height: 100%;
-	z-index: 5;
-	box-shadow:0 1px 35px 5px rgba(0,0,0,.1);
-
+	/*z-index: 5;*/
+	background-color: transparent !important;
 	-webkit-transform: skew(17.3deg);
 	   -moz-transform: skew(17.3deg);
 	     -o-transform: skew(17.3deg);
@@ -22,10 +21,55 @@ body{
 	z-index: 0;	
 }
 .home-page .container{
-
 	-webkit-transform: skew(-17.3deg);
 	   -moz-transform: skew(-17.3deg);
 	     -o-transform: skew(-17.3deg);
+}
+.home-page .banner-img{
+	position: absolute;top:0;left: -120px;
+	width: calc(100% + 200px);height:100%;
+	
+	-webkit-transform: skew(-17.3deg);
+	   -moz-transform: skew(-17.3deg);
+	     -o-transform: skew(-17.3deg);
+}
+.bg-somn{
+	position: absolute;top:0;left: -120px;
+	width: calc(100% + 200px);height:100%;
+	background: rgba(0,0,0,0.5);
+
+	-webkit-transform: skew(-17.3deg);
+	   -moz-transform: skew(-17.3deg);
+	     -o-transform: skew(-17.3deg);	
+}
+.bg-somn .products{
+	position: absolute;left:0;top:0;width:100%;height:100%;
+	transform:translate3d(0,100%,0);
+}
+.product-btn{
+	/*transform:translate3d(0,-320px,0);*/
+	display: inline-block;
+	color: #fff;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	width: 137px;
+	height: 137px;
+	line-height: 137px;
+	padding: 0;
+	background-color: #26a69a;
+	border-radius: 50%;
+	transition: .3s;
+	cursor: pointer;
+	vertical-align: middle;
+	font-size: 1.4rem;
+	font-family: verdana cursive !important;
+}
+.shadow-text{
+	text-shadow:1px 1px 1px rgba(0,0,0,.6);
+}
+.mini-shadow-text{
+	text-shadow:0 0 1px rgba(0,0,0,.3);
 }
 #parent{
 	z-index: 1;
@@ -38,7 +82,6 @@ body{
 	width: 30%;
 	height: 100%;
 	overflow: hidden;
-
 	-webkit-transform: skew(20deg);
 	   -moz-transform: skew(20deg);
 	     -o-transform: skew(20deg);
@@ -92,6 +135,7 @@ body{
 #share-button, #home-link{
 	/*opacity: 0;*/
 }
+
 .extras{
 	position: absolute;top:0%;left: 0px;
 	z-index:3;
@@ -117,7 +161,7 @@ body{
 	/*opacity: 0;*/
 	/*z-index: 0;*/
 	overflow: hidden;
-	background-color: #fefefe;
+	/*background-color: red;*/
 	position: absolute;left:0;height:100%;
 	width:100%;
 
@@ -126,9 +170,15 @@ body{
 	     -o-transform: skew(20deg);
 }
 .jura{
-	-webkit-transform: skew(-20deg);
-	   -moz-transform: skew(-20deg);
-	     -o-transform: skew(-20deg);
+	width: 100%;
+	position: absolute;
+	height: 100%;
+}
+#top-banner{
+	-webkit-transform: translateY(-100%);
+	   -moz-transform: translateY(-100%);
+	     -o-transform: translateY(-100%);
+	     transform: translateY(-100%);
 }
 #details .card{
 	box-shadow: none;
@@ -136,11 +186,8 @@ body{
 }
 #back-button{
 	/*display: none;*/
-	position: absolute;top:50px;left:150px;
+	position: absolute;top:50px;left:50px;
 	color:#616161;z-index: 99;
-	-webkit-transform: skew(-20deg);
-	   -moz-transform: skew(-20deg);
-	     -o-transform: skew(-20deg);
 }
 .prod-title{
 	position: absolute;top:50px;left:400px;
@@ -163,6 +210,25 @@ body{
 .action-buttons{
 	-webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+}
+.action-buttons li:first-child a,.action-buttons  li:last-child a{
+	opacity: 0;
+	-webkit-transform: translateY(-170%);
+	   -moz-transform: translateY(-170%);
+	     -o-transform: translateY(-170%);
+	     	transform: translateY(-170%);
+}
+.action-buttons li:first-child a{
+	-webkit-transform: translateY(170%);
+	   -moz-transform: translateY(170%);
+	     -o-transform: translateY(170%);	
+	   		transform: translateY(170%);
+}
+.action-buttons  li:last-child a{
+	-webkit-transform: translateY(-170%);
+	   -moz-transform: translateY(-170%);
+	     -o-transform: translateY(-170%);	
+	     transform: translateY(-170%);
 }
 .action-buttons.rotated{
 	transform: rotate(-90deg);
@@ -194,7 +260,12 @@ body{
 	overflow: hidden;
 }
 .card-content.textual.minimized{
-	display: none;
+	/*display: none;*/
+	opacity: 0;
+	-webkit-transform: scale(0.6) translateY(10%);
+	 -ms-transform: scale(0.6) translateY(10%);
+	 -o-transform: scale(0.6) translateY(10%);
+	 transform: scale(0.6) translateY(10%); 
 }
 .card-content.textual .product-image, .card-content.textual .product-details{
 	position: absolute;
@@ -212,6 +283,7 @@ body{
 }
 .card-content.textual .product-details{
 	left: 40%;
+	/*left: 0;*/
 	padding:20px;
 	padding-left: 40px;
 }
@@ -346,3 +418,111 @@ body{
     -ms-animation: fadeOutRight 1s;
     animation: fadeOutRight 1s;
 }
+
+
+
+/*NAV-MENU*/
+.circle_menu {
+    width: 60px;
+    height: 60px;
+    margin: 0 0.5rem 0 0.5rem;
+    border-radius: 56px;
+    /*background: #e91e63;*/
+    z-index: 3;
+    color: #eee;
+    text-align: center;
+    line-height: 60px;
+    font-size: 2rem;
+    display: inline-block;
+    cursor: pointer;
+    position: fixed;
+    bottom: 26px;
+    left: 20px;
+    z-index: 9999;
+  }
+
+  .menu_btn {
+  	 color: #eee;
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+  }
+
+  .open .menu_btn {
+    box-shadow: none;
+    color: #eee;
+  }
+
+  .open .circle_menu {
+    background: transparent !important;
+    box-shadow: none;
+    font-size: 2rem;
+    color: #fefefe;
+  }
+
+  .menu_btn:after{
+    content: '\f35b';
+  }
+
+  .open .menu_btn:after{
+    content: '\f136';
+  }
+
+  .open .menu {
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+
+  .open .menu .menu_itm {
+    opacity: 1;
+  }
+
+  .menu {
+    height: 400px;
+    width: 400px;
+    background-color: #F06292;
+    position: fixed;
+    bottom: -200px;
+    left: -200px;
+    z-index: 999;
+    border-radius: 50%;
+    box-shadow: -2px -1px 3px rgba(0, 0, 0, 0.24);
+    opacity: 0;
+    -webkit-transform: scale(0, 0);
+    -ms-transform: scale(0, 0);
+    transform: scale(0, 0);
+    -webkit-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+  }
+
+  .menu .menu_itm {
+    display: block;
+    line-height: 56px;
+    font-size: 2rem;
+    color: white;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-transition: opacity 200ms ease-in 215ms;
+    transition: opacity 200ms ease-in 215ms;
+  }
+
+  .menu .menu_itm:nth-child(1) {
+    left: 220px;
+    bottom: 340px;
+  }
+
+  .menu .menu_itm:nth-child(2) {
+    left: 315px;
+    bottom: 285px;
+
+    -webkit-transform: rotate(-25deg) translate3d(0,-10px,0);
+    -ms-transform: rotate(-25deg) translate3d(0,-10px,0);
+    transform: rotate(-25deg) translate3d(0,-10px,0);
+  }
+
+  .menu .menu_itm:nth-child(3) {
+    left: 350px;
+    bottom: 200px;
+  }
