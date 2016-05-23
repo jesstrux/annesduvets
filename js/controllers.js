@@ -21,7 +21,7 @@ angular.module('annes.controllers', [])
   $scope.openProduct = configs.openProduct;
   
   if(!$scope.openProduct)
-    TweenMax.staggerFrom(".parallelogram", 1.2, {y:-80}, 0.4);
+    TweenMax.staggerFrom(".parallelogram", 1, {y:-80}, 0.2);
   else{
     TweenMax.from(".parallelogram:nth("+$scope.openProduct+") img", .8, {y:-34, ease: Back.easeOut});
     TweenMax.staggerFrom(".parallelogram:nth("+$scope.openProduct+") .desc .section-head, .parallelogram:nth("+$scope.openProduct+") .desc p", .5, {y:50}, 0.1);
@@ -100,8 +100,8 @@ angular.module('annes.controllers', [])
     tl.from(".product-image", .5, {opacity:0.5}, "bg+=0.8");
     tl.from(".product-details .section-head", 1, {opacity: 0, x:40}, "bg+=0.5");
     tl.from(".product-details p", 1, {opacity: 0 , x:30}, "bg+=0.5");
-    tl.to("#actionButton", .3, {opacity:1, 'z-index' : 1}, "bg+=0.5");
-    tl.to(".action-buttons a:first, .action-buttons a:last", .1, {opacity:1, y:0}, "bg+=0.4");
+    tl.to("#actionButton", .3, {opacity:1, 'z-index' : 1}, "bg+=0.3");
+    tl.to(".action-buttons a:first, .action-buttons a:last", .1, {opacity:1, y:0}, "bg+=0.3");
   }, 1);
 
   $scope.actionButtonClick = function(){
