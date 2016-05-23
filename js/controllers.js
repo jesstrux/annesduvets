@@ -93,15 +93,15 @@ angular.module('annes.controllers', [])
   //   TweenMax.to("#actionButton", .3, {opacity:1, 'z-index' : 1, delay:1});
   // },1);
   var tl = new TimelineLite();
-  tl.from("#details", 1, {x:left, width:w}, "bg");
+  tl.from("#details", 0.3, {x:left, width:w}, "bg");
   $timeout(function(){
-    tl.to("#top-banner", 0.8, {y:0}, "bg+=0.7");
+    tl.to("#top-banner", 0.5, {y:0}, "bg+=0.3");
     tl.to(".textual", .5, {scale:1, y:0, opacity:1}, "bg+=0.25");
     tl.from(".product-image", .5, {opacity:0.5}, "bg+=0.8");
     tl.from(".product-details .section-head", 1, {opacity: 0, x:40}, "bg+=0.5");
     tl.from(".product-details p", 1, {opacity: 0 , x:30}, "bg+=0.5");
-    tl.to("#actionButton", .3, {opacity:1, 'z-index' : 1}, "bg+=1.3");
-    tl.to(".action-buttons a:first, .action-buttons a:last", .2, {opacity:1, y:0}, "bg+=1.8");
+    tl.to("#actionButton", .3, {opacity:1, 'z-index' : 1}, "bg+=0.5");
+    tl.to(".action-buttons a:first, .action-buttons a:last", .1, {opacity:1, y:0}, "bg+=0.4");
   }, 1);
 
   $scope.actionButtonClick = function(){
